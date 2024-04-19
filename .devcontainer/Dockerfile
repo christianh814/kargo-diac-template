@@ -35,4 +35,4 @@ RUN curl -LO "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
 # This should be the same K8s version that kind creates.
 ENV KARGO_VERSION=v0.5.2
 RUN curl -Lo /usr/local/bin/kargo "https://github.com/akuity/kargo/releases/download/${KARGO_VERSION}/kargo-linux-amd64" \
-    && chmod +x /usr/local/bin/kubectl
+    && chmod +x /usr/local/bin/kargo
