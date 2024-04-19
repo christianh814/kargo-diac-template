@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gobg
+  name: gobg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gobg
+  template:
+    metadata:
+      labels:
+        app: gobg
+    spec:
+      containers:
+      - image: christianh814/gobg:blue
+        name: gobg
+        resources: {}
