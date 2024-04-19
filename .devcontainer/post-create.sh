@@ -24,7 +24,7 @@ chown $(id -u):$(id -g) /home/vscode/.bashrc
 chmod 0644 /home/vscode/.bashrc
 
 ## Update Repo With proper username
-############## bash .devcontainer/update-repo-for-workshop.sh
+bash .devcontainer/update-repo-for-workshop.sh
 
 ## Log things
 echo "post-create complete" >> ~/.status.log

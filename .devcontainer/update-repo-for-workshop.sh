@@ -19,8 +19,6 @@ fi
 ## Search for <username> and replace it with 
 find ${workspace} -name '*.yaml' -type f -exec grep -l '<username>' {} \; | while read file
 do
-    ## Let's ignore this script
-    [[ ${file} == ${workspace}/.hack/update-repo-for-workshop.sh ]] && continue
     sed -i "s/<username>/${GITHUB_USER}/g" ${file}
 done
 
