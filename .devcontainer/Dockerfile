@@ -36,3 +36,6 @@ RUN curl -LO "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
 ENV KARGO_VERSION=v0.5.2
 RUN curl -Lo /usr/local/bin/kargo "https://github.com/akuity/kargo/releases/download/${KARGO_VERSION}/kargo-linux-amd64" \
     && chmod +x /usr/local/bin/kargo
+
+# Run the things we need
+RUN apt update && apt install bash-completion
