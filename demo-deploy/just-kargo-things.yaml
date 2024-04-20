@@ -12,7 +12,7 @@ metadata:
 spec:
   subscriptions:
   - git:
-      repoURL: https://github.com/<username>/kargo-diac
+      repoURL: https://github.com/<repo>
       branch: main
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -27,7 +27,7 @@ spec:
     warehouse: kargo-demo
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/<username>/kargo-diac
+    - repoURL: https://github.com/<repo>
       writeBranch: stage/test
     argoCDAppUpdates:
     - appName: kargo-demo-test
@@ -46,7 +46,7 @@ spec:
     - name: test
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/<username>/kargo-diac
+    - repoURL: https://github.com/<repo>
       writeBranch: stage/uat
     argoCDAppUpdates:
     - appName: kargo-demo-uat
@@ -65,7 +65,7 @@ spec:
     - name: uat
   promotionMechanisms:
     gitRepoUpdates:
-    - repoURL: https://github.com/<username>/kargo-diac
+    - repoURL: https://github.com/<repo>
       writeBranch: stage/prod
     argoCDAppUpdates:
     - appName: kargo-demo-prod
