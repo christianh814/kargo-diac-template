@@ -39,3 +39,14 @@ RUN curl -Lo /usr/local/bin/kargo "https://github.com/akuity/kargo/releases/down
 
 # Run the things we need
 RUN apt update && apt install bash-completion
+
+# Add bash completion and such
+RUN echo 'source <(kubectl completion bash)' >> /etc/bash.bashrc
+RUN echo 'source <(akuity completion bash)' >> /etc/bash.bashrc
+RUN echo 'source <(argocd completion bash)' >> /etc/bash.bashrc
+RUN echo 'source <(kustomize completion bash)' >> /etc/bash.bashrc
+RUN echo 'source <(kind completion bash)' >> /etc/bash.bashrc
+RUN echo 'source <(kargo completion bash)' >> /etc/bash.bashrc
+RUN echo 'source <(helm completion bash)' >> /etc/bash.bashrc
+RUN echo 'alias k="kubectl"' >> /etc/bash.bashrc
+RUN echo 'complete -F __start_kubectl k' >> /etc/bash.bashrc
