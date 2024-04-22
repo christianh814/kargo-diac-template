@@ -23,7 +23,7 @@ nodes:
   
 EOF
 
-## Install Cert Manager and wait
+## Install Cert Manager
 helm install cert-manager cert-manager \
   --repo https://charts.jetstack.io \
   --version 1.11.5 \
@@ -63,25 +63,6 @@ helm install kargo \
   --set api.adminAccount.passwordHash='$2a$10$Zrhhie4vLz5ygtVSaif6o.qN36jgs6vjtMBdM6yrU1FOeiAAMMxOm' \
   --set api.adminAccount.tokenSigningKey=iwishtowashmyirishwristwatch \
   --wait
-
-## Wait for Freight to be present, we'll break if nothing shows up after 30ish seconds
-counter=0
-until [[ $(kubectl get freights.kargo.akuity.io --namespace kargo-demo -o go-template='{{len .items}}') -gt 0 ]]
-do
-	## Stop if something isn't there after 30 seconds or so
-	[[ ${counter} -gt 6 ]] && echo "freight took too long to show up" && exit 13
-	echo "waiting for freight..."
-	counter=$((counter+1))
-	sleep 5
-done
-
-## Preseed Freight by promoting it
-for stage in test uat prod
-do
-	promotion=$(kargo promote --project kargo-demo --freight-alias $(kargo get freight --project kargo-demo --output jsonpath={.alias}) --stage ${stage} -o jsonpath='{.metadata.name}')
-
-	kubectl wait --for jsonpath='{.status.phase}'=Succeeded promotions.kargo.akuity.io ${promotion} -n kargo-demo --timeout=30s
-done
 
 ## Exit here if no errors were found
 exit 0
