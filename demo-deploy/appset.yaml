@@ -18,7 +18,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/<username>/kargo-diac
+        repoURL: https://github.com/<repo>
         targetRevision: stage/{{stage}}
         path: app/overlays//{{stage}}
       destination:
