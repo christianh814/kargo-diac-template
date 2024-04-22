@@ -64,15 +64,15 @@ helm install kargo \
   --set api.adminAccount.tokenSigningKey=iwishtowashmyirishwristwatch \
   --wait
 
-## Wait for Freight to be present, we'll break if nothing shows up after 15ish seconds
+## Wait for Freight to be present, we'll break if nothing shows up after 30ish seconds
 counter=0
-until [[ $(kubectl get freights.kargo.akuity.io -n kargo-demo -o go-template='{{len .items}}') -gt 0 ]]
+until [[ $(kubectl get freights.kargo.akuity.io --namespace kargo-demo -o go-template='{{len .items}}') -gt 0 ]]
 do
-	## Stop if something isn't there after 15 seconds or so
-	[[ ${counter} -gt 3 ]] && echo "freight took too long to show up" && exit 13
+	## Stop if something isn't there after 30 seconds or so
+	[[ ${counter} -gt 6 ]] && echo "freight took too long to show up" && exit 13
 	echo "waiting for freight..."
 	counter=$((counter+1))
-	sleep 3
+	sleep 5
 done
 
 ## Preseed Freight by promoting it
