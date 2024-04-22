@@ -1,5 +1,5 @@
 #!/bin/bash
-workspace="/workspaces/kargo-diac"
+workspace="/workspaces/$(basename ${GITHUB_REPOSITORY})"
 
 ## Check to see if you're in the right path
 ## This protects against updating the template while working on the template repo.
