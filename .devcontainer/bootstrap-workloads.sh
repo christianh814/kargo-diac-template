@@ -68,8 +68,8 @@ helm install kargo \
 counter=0
 until [[ $(kubectl get freights.kargo.akuity.io -n kargo-demo -o go-template='{{len .items}}') -gt 0 ]]
 do
-	## Stop if something isn't there after 12 seconds or so
-	[[ ${counter} -gt 3 ]] && exit 13
+	## Stop if something isn't there after 15 seconds or so
+	[[ ${counter} -gt 3 ]] && echo "freight took too long to show up" && exit 13
 	echo "waiting for freight..."
 	counter=$((counter+1))
 	sleep 3
