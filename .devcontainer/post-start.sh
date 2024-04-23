@@ -34,9 +34,10 @@ done
 ## Preseed Freight by promoting it
 for stage in test uat prod
 do
-	promotion=$(kargo promote --project kargo-demo --freight-alias $(kargo get freight --project kargo-demo --output jsonpath={.alias}) --stage ${stage} -o jsonpath='{.metadata.name}')
-
-	kubectl wait --for jsonpath='{.status.phase}'=Succeeded promotions.kargo.akuity.io ${promotion} -n kargo-demo --timeout=30s
+	freight=$(kargo get freight --project kargo-demo -o jsonpath='{.metadata.name}')
+	promotion=$(kargo promote --project kargo-demo --freight ${freight} --stage ${stage} -o jsonpath='{.metadata.name}')
+	kubectl wait --for jsonpath='{.status.phase}'=Succeeded promotions.kargo.akuity.io ${promotion} -n kargo-demo --timeout=60s
+	kubectl wait --for jsonpath='{.status.currentFreight.name}'=${freight} stages.kargo.akuity.io test -n kargo-demo --timeout=60s
 done
 
 
