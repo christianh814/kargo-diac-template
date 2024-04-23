@@ -45,6 +45,7 @@ do
 		[[ ${promotioncounter} -gt 6 ]] && echo "Promotion took too long to verify" && exit 13
 		echo "waiting for promotion to be verified"
 		promotioncounter=$((promotioncounter+1))
+		sleep 5
 	done
 done
 
