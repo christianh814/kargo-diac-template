@@ -3,22 +3,28 @@ name: Personalize Template for User
 on:
   create:
 
+permissions:
+  contents: write
+  actions: write
+
 jobs:
   personalize:
     runs-on: ubuntu-latest
-    permissions:
-      actions: write
-      contents: write
     steps:
       - name: Checkout Repo
+        id: checkout_repo
         uses: actions/checkout@v4
       - name: Personalize to User
+        id: personalize_to_user
         run: |
           find ${GITHUB_WORKSPACE} -name '*.yaml' -type f -exec grep -l '<repo>' {} \; | while read file
           do
             sed -i "s?<repo>?${GITHUB_REPOSITORY}?g" ${file}
           done
       - name: Commit and Push
+        id: commit_and_push
         uses: stefanzweifel/git-auto-commit-action@v5
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           commit_message: "updated source to point to ${GITHUB_USER}"
