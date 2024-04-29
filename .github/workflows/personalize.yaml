@@ -1,0 +1,23 @@
+name: Personalize Template for User
+
+on:
+  create:
+
+jobs:
+  personalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Personalize to User
+        run: |
+          find ${GITHUB_WORKSPACE} -name '*.yaml' -type f -exec grep -l '<repo>' {} \; | while read file
+          do
+            sed -i "s?<repo>?${GITHUB_REPOSITORY}?g" ${file}
+          done
+      - name: Commit and Push
+        run: |
+          cd ${GITHUB_WORKSPACE}
+          git add .
+          git commit -am "updated source to point to ${GITHUB_USER}"
+          git push origin main
