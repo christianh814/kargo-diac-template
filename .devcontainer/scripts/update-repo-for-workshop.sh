@@ -1,10 +1,6 @@
 #!/bin/bash
 workspace="/workspaces/$(basename ${GITHUB_REPOSITORY})"
 
-## EXIT FOR NOW
-exit 0
-##
-
 ## Check to see if you're in the right path
 ## This protects against updating the template while working on the template repo.
 ## TODO: This will fail if users are doing this "outside" of GitHub. Need a way to "normalize it"
