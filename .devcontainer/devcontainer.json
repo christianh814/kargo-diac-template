@@ -1,6 +1,6 @@
 {
 	"name": "kargo-diab",
-	"image": "quay.io/akuity/argo-cd-learning-assets/akuity-devcontainer:0.1.0-rc.1",
+	"image": "quay.io/akuity/argo-cd-learning-assets/akuity-devcontainer:0.1.0",
 
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
