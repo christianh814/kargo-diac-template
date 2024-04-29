@@ -16,8 +16,6 @@ jobs:
             sed -i "s?<repo>?${GITHUB_REPOSITORY}?g" ${file}
           done
       - name: Commit and Push
-        run: |
-          cd ${GITHUB_WORKSPACE}
-          git add .
-          git commit -am "updated source to point to ${GITHUB_USER}"
-          git push origin main
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "updated source to point to ${GITHUB_USER}"
