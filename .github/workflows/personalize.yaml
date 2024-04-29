@@ -3,10 +3,6 @@ name: Personalize Template for User
 on:
   create:
 
-permissions:
-  contents: write
-  actions: write
-
 jobs:
   personalize:
     runs-on: ubuntu-latest
@@ -23,8 +19,11 @@ jobs:
           done
       - name: Commit and Push
         id: commit_and_push
-        uses: stefanzweifel/git-auto-commit-action@v5
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        with:
-          commit_message: "updated source to point to ${GITHUB_USER}"
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -am "updated source to point to ${GITHUB_USER}"
+          git push origin main
