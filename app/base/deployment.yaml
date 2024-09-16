@@ -15,6 +15,6 @@ spec:
         app: gobg
     spec:
       containers:
-      - image: christianh814/gobg:blue
+      - image: quay.io/akuity/argo-cd-learning-assets/guestbook:0.1.0
         name: gobg
         resources: {}

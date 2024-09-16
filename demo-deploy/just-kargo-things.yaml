@@ -14,6 +14,8 @@ spec:
   - git:
       repoURL: https://github.com/<repo>
       branch: main
+  - image:
+      repoURL: quay.io/akuity/argo-cd-learning-assets/guestbook
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
